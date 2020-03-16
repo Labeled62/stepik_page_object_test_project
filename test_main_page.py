@@ -1,8 +1,5 @@
-import pytest
-from selenium import webdriver
-import time
-import math
-from .main_page import MainPage
+from .pages.main_page import MainPage
+from .pages.login_page import LoginPage
 
 
 
@@ -19,3 +16,8 @@ def test_guest_should_be_login_page(browser):
     page = MainPage(browser, link)
     page.open()
     page.should_be_login_link()
+def test_of_login_page(browser):
+    login_url = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+    page = LoginPage(browser, login_url)
+    page.open()
+    page.should_be_login_page()
