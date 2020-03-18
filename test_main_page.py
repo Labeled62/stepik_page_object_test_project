@@ -2,7 +2,6 @@ from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 
 
-
 def go_to_login_page(browser):
     login_link = browser.find_element_by_css_selector("#login_link")
     login_link.click()
@@ -23,4 +22,5 @@ def test_of_login_page(browser):
     page = LoginPage(browser, login_url)
     page.open()
     page.should_be_login_page()
+
 
