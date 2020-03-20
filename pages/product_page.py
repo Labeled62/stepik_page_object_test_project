@@ -2,6 +2,7 @@ from .base_page import BasePage
 from selenium.common.exceptions import NoAlertPresentException  # в начале файла
 import math
 import time
+from .basket_page import BasketPage
 
 from .locators import ProductPageLocators
 
@@ -13,7 +14,6 @@ class ProductPage(BasePage):
         add_to_bskt_btn.click()
 
     def should_be_product_page(self):  # проверки добавления товара в корзину
-        self.solve_quiz_and_get_code()
         self.should_be_add_to_basket_button()
         self.should_be_message_add_to_basket()
         self.should_be_product_name_valid()

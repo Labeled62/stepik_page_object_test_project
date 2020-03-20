@@ -1,5 +1,5 @@
 from selenium.webdriver.support import expected_conditions as EC
-
+import random
 import pytest
 from selenium import webdriver
 import time
@@ -8,7 +8,7 @@ import math
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 
-from pages.locators import MainPageLocators
+from pages.locators import MainPageLocators, BasePageLocators
 
 
 class BasePage():
@@ -47,9 +47,17 @@ class BasePage():
             return False
         return True
 
-    def go_to_login_page(self):
-        login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+    def go_to_login_page(self): #переход на страницу логина
+        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
 
-    def should_be_login_link(self):
-        assert self.is_element_present(*MainPageLocators.LOGIN_LINK), "Login link is not presented"
+    def should_be_login_link(self): #проверки наличия ссылки логина
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def go_to_basket_page(self): #переход в корзитну
+        basket_button = self.browser.find_element(*BasePageLocators.BASKET_BTN)
+        basket_button.click()
+
+    def should_be_authorized_user(self): #проверка того, что юхер авторизован
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
