@@ -10,4 +10,3 @@ class BasketPage(BasePage):
         assert self.is_element_present(*BasketPageLocators.EMPTY_BASKET), "BASKET NOT EMPTY!!!"
 
 
-    

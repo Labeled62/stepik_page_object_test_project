@@ -55,5 +55,5 @@ class LoginPage(BasePage):
         password_edit2.send_keys(password)
         reg_btn = self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON)
         reg_btn.click()
-        time.sleep(4)
+        self.browser.implicitly_wait(5)
         assert self.is_element_present(*LoginPageLocators.REGISTER_SUCCESS_MESSAGE), "REGISTER MESSAGE OUT OF PAGE"

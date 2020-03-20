@@ -1,9 +1,7 @@
 from pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
-from .pages.basket_page import BasketPage
 import pytest
-import time
 
 
 class TestUserAddToBasketFromProductPage:
@@ -27,7 +25,6 @@ class TestUserAddToBasketFromProductPage:
         page = ProductPage(browser, link)
         page.open()
         page.bucket_button_click()
-        time.sleep(2)
         page.should_be_product_page()
 
 
@@ -38,7 +35,6 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.open()
     page.go_to_basket_page()
     basket_page = BasketPage(browser, browser.current_url)
-    time.sleep(1)
     basket_page.should_be_product_is_not_present_on_basket()
     basket_page.should_be_text_of_empty_basket()
 

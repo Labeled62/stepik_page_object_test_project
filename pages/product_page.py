@@ -2,7 +2,6 @@ from .base_page import BasePage
 from selenium.common.exceptions import NoAlertPresentException  # в начале файла
 import math
 import time
-from .basket_page import BasketPage
 
 from .locators import ProductPageLocators
 
@@ -43,42 +42,36 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.BTN_ADD_TO_BUCKET), "This button not on page"
 
     def should_be_message_add_to_basket(self):  # проверка того, что присутствует сообщение добавления в корзину
-        print('start-test')
-        # time.sleep()
+
+
         assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_WINDOW), "ADD TO BASKET WINDOWS OUT OF PAGE"
 
     def should_be_product_name_valid(
             self):  # проверка того, что наименование товара соответствует наименованию товара в корзине
-        print('name_valid')
+
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), "PRODUCT NAME OUT OF PAGE"
         assert self.is_element_present(
             *ProductPageLocators.ADD_TO_BASKET_PRODUCT_NAME), "ADD TO BASKET PRODUCT NAME OUT OF PAGE"
         product_text = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        # product_text = product_text.text
         add_to_basket_product_name = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_PRODUCT_NAME).text
-        # add_to_basket_product_name = add_to_basket_product_name
-        print(product_text)
-        print(add_to_basket_product_name)
         assert product_text == add_to_basket_product_name, "ADDED PRODUCT != PRODUCT ON CARD"
 
     def should_be_product_value_valid(self):  # проверка того, что цена товара соответствует цене товара в корзине
-        print('value_valid')
+
         assert self.is_element_present(*ProductPageLocators.PRICE_MESSAGE_WINDOW), "PRICE MESSAGE OUT OF PAGE!"
         assert self.is_element_present(
             *ProductPageLocators.PRICE_VALUE_IN_MESSAGE), "PRICE VALUE IN MESSAGE OUT OF PAGE"
         assert self.is_element_present(*ProductPageLocators.PRICE_VALUE), "PRICE VALUE OUT OF PAGE"
         value_in_message_text = self.browser.find_element(*ProductPageLocators.PRICE_VALUE_IN_MESSAGE).text
-        # value_in_message_text = value_in_message_text
         value_text = self.browser.find_element(*ProductPageLocators.PRICE_VALUE).text
-        # value_text = value_text
         assert value_in_message_text == value_text, "PRICE IN MESSAGE != PRICE ON PAGE"
 
     def should_be_success_message_is_not_present(self):
-        print('is_not_present')
+
         assert self.is_not_element_present(
             *ProductPageLocators.ADD_TO_BASKET_WINDOW), "ADD_TO BASKET WINDOW IS PRESENT!!!!"
 
     def should_be_success_message_is_disappeared(self):
-        print('is_disappeared')
+
         assert self.is_disappeared(
             *ProductPageLocators.ADD_TO_BASKET_WINDOW), "ADD TO BASKET WINDOW IS NOT DISAPPEARED!!!"

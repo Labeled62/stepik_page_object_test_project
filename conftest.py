@@ -1,18 +1,18 @@
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default="chrome",
-                 help="Choose browser: chrome or firefox")
+                     help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default="en",
-                 help="Choose language: ar, ca, cs, da, de, en-gb, el, es, fi, fr, it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-hans")
+                     help="Choose language: ar, ca, cs, da, de, en-gb, el, es, fi, fr, it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-hans")
 
 
 @pytest.fixture(scope="function")
 def browser(request):
-    language  =str(request.config.getoption("language")  )
+    language = str(request.config.getoption("language"))
     browser_name = request.config.getoption("browser_name")
     if browser_name == "chrome":
         print("\nstart chrome browser with for test..")
@@ -27,7 +27,8 @@ def browser(request):
     else:
         print("Browser {} is not corrected".format(browser_name))
         print \
-            ("Language must be one of: ar, ca, cs, da, de, en-gb, el, es, fi, fr, it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-hans")
+            (
+                "Language must be one of: ar, ca, cs, da, de, en-gb, el, es, fi, fr, it, ko, nl, pl, pt, pt-br, ro, ru, sk, uk, zh-hans")
     yield browser
     print("\nquit browser..")
     browser.quit()
